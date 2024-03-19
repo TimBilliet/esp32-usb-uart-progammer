@@ -1,0 +1,15 @@
+Change Component Footprint: Designator=R4 Old Footprint=FP-ERA3A-IPC_A New Footprint=Wurth 0603 Resistor
+Change Component Footprint: Designator=R7 Old Footprint=RESC1608X55X30LL15T15 New Footprint=Uni Royal 0603 Resistor
+Change Component Footprint: Designator=R3 Old Footprint=RESC1609X50X30ML8T20 New Footprint=Wurth 0603 Resistor
+Change Component Comment : Designator=R3 Old Comment=CRCW0603100RFKEA New Comment=Generic Resistor 100R 0603
+Change Component Comment : Designator=R4 Old Comment=ERA-3AEB2212V New Comment=Generic Resistor 22k1 0603
+Change Component Comment : Designator=R7 Old Comment=ERJ-3EKF4752V New Comment=Generic Resistor 47k5 0603
+Change Managed Component Library Link : Designator=R3 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=2B8A9B7B-5285-4DC1-92A4-EA7C2D6CB45B New ItemGUID= Old RevisionGUID=F65A6A45-5B30-4E33-BEB4-E39648BBC250 New RevisionGUID=
+Change Managed Component Library Link : Designator=R4 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=4769C506-E45A-46CD-8745-7543D2D01477 New ItemGUID= Old RevisionGUID=CAC97F33-285D-4647-A655-9CBF1ECF42C8 New RevisionGUID=
+Change Managed Component Library Link : Designator=R7 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=F1A053E4-97FF-4BAF-9907-79E5139A4A22 New ItemGUID= Old RevisionGUID=D6364659-847D-4559-B3B4-90045210EEAD New RevisionGUID=
+Change component parameters: Designator = "R3" ("R3"); Footprint = "RESC1609X50X30ML8T20"; UniqueID = "\HQAWOMKM" ("\HQAWOMKM")
+Change component parameters (AddParameter): Name = "Value"; Value = "100R"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R4" ("R4"); Footprint = "FP-ERA3A-IPC_A"; UniqueID = "\QBWHPQYK" ("\QBWHPQYK")
+Change component parameters (AddParameter): Name = "Value"; Value = "22.1k"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R7" ("R7"); Footprint = "RESC1608X55X30LL15T15"; UniqueID = "\HBUSFPQM" ("\HBUSFPQM")
+Change component parameters (AddParameter): Name = "Value"; Value = "47.5k"; VariantName = "[No Variations]"
