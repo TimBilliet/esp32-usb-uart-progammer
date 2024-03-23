@@ -83,6 +83,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=LXYSHYEQ
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for ESP32-Progammer\Design Rule Check - MAIN_PCB.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0

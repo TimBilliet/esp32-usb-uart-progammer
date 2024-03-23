@@ -1,0 +1,730 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">23/03/2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">1:46:14</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc" class="file"><acronym title="C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc">C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">126</td></tr>
+</table>
+</td>
+</table><a name="IDFVUJGSB2QGZ5C2L5L55IXJLX4JJPQDMEHNI4KRLVBJBROD3UVC5H"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5BQJKYP5REPKCGRCXLU4REJXPV5XANHW3WJI0ORB4GYMYNT3NTE">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">42</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTGCAN0UHUPI0GKOFGOT5XMYG2FKTVOAKDLB2DCMU0CL3U0Z00DSB">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEPDIZON41OYNHTBEVNIRTAY00HIMRCG213ON3ZCXPDUOXU2ABJPP">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZX41XRCUFKMEEEMTDJ2PFOOMVB3V40VZ23VYS5PMDZBSQDJDZUQI">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZCCSRO0JR24NHR02OY40R1YTBPKM1GRLIIRUM1ITVIANT2W0V5JK">Width Constraint (Min=0.2mm) (Max=1mm) (Preferred=0.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWJPC5WBQZIHECZ10TTRNKNQ25JJ20OHGUQHL4LOB1AT0YKVDCB1M">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDB5RFUYL54XSFPQC2ITDVWT0N4F2CAN5LKPMYLRMQKRNVL5U01X0J">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (IsVia)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKIQ2P50U04N1JKMCYEMOEL0JHEVDBWRNQ0ZDCKHH1T5KO00BTOWC">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUGGMIBDDYVTHO52Z55CMSSWK2LX3H3FXFSAGRNNS3CFYQ2N1TRCH">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQRGM2I4VJY5OCQQAI0T5J34VXBL2RUVXUBVX3QFEP1RHSJ31XAVC">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">77</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBIFCWL0P4NKPEDMIB0LWL4AOJCW2DQYQN0WW3SGWOR1J0G4P505I">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUXUGH5WE2KCTC3I1MCUSNPN3PKUKCBBVIDL3GBHTFQLPUK4MDPLM">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYWNQD0JAYPAQNFDZCOGEJUD3JI2OUZVNA5A1S3P2YF2YSY1EGCCO">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNRTFTN0DOSZYCC31XW5QLB4VWNHAO1JBDUX2XTE25OMZZ35YY14C">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">126</td>
+</tr>
+</table><br><a name="ID5BQJKYP5REPKCGRCXLU4REJXPV5XANHW3WJI0ORB4GYMYNT3NTE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.2mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.576mil|Location2.X=6000.7mil|Location1.Y=2435.151mil|Location2.Y=2444.275mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.576mil|Location2.X=6000.7mil|Location1.Y=2435.151mil|Location2.Y=2444.275mil|Absolute=True">Clearance Constraint: (0.181mm &lt; 0.2mm) Between Track (151.857mm,61.755mm)(152.271mm,61.755mm) on Top Layer And Track (152.271mm,62.245mm)(152.333mm,62.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.576mil|Location2.X=6000.7mil|Location1.Y=2435.151mil|Location2.Y=2444.275mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.576mil|Location2.X=6000.7mil|Location1.Y=2435.151mil|Location2.Y=2444.275mil|Absolute=True">Clearance Constraint: (0.181mm &lt; 0.2mm) Between Track (151.857mm,61.755mm)(152.271mm,61.755mm) on Top Layer And Track (152.333mm,62.182mm)(152.732mm,62.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.576mil|Location2.X=6000.7mil|Location1.Y=2437.615mil|Location2.Y=2446.739mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.576mil|Location2.X=6000.7mil|Location1.Y=2437.615mil|Location2.Y=2446.739mil|Absolute=True">Clearance Constraint: (0.181mm &lt; 0.2mm) Between Track (151.857mm,62.245mm)(152.271mm,62.245mm) on Top Layer And Track (152.271mm,61.755mm)(152.333mm,61.818mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.576mil|Location2.X=6000.7mil|Location1.Y=2437.615mil|Location2.Y=2446.739mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.576mil|Location2.X=6000.7mil|Location1.Y=2437.615mil|Location2.Y=2446.739mil|Absolute=True">Clearance Constraint: (0.181mm &lt; 0.2mm) Between Track (151.857mm,62.245mm)(152.271mm,62.245mm) on Top Layer And Track (152.333mm,61.818mm)(152.581mm,61.818mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5992.808mil|Location2.X=6001.932mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5992.808mil|Location2.X=6001.932mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.271mm,61.755mm)(152.333mm,61.818mm) on Top Layer And Track (152.271mm,62.245mm)(152.333mm,62.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5992.808mil|Location2.X=6001.932mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5992.808mil|Location2.X=6001.932mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.271mm,61.755mm)(152.333mm,61.818mm) on Top Layer And Track (152.333mm,62.182mm)(152.732mm,62.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5992.808mil|Location2.X=6001.932mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5992.808mil|Location2.X=6001.932mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.271mm,62.245mm)(152.333mm,62.182mm) on Top Layer And Track (152.333mm,61.818mm)(152.581mm,61.818mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5997.687mil|Location2.X=6006.811mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5997.687mil|Location2.X=6006.811mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True">Clearance Constraint: (0.19mm &lt; 0.2mm) Between Track (152.271mm,62.245mm)(152.333mm,62.182mm) on Top Layer And Track (152.581mm,61.818mm)(153.335mm,61.064mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5992.808mil|Location2.X=6001.932mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5992.808mil|Location2.X=6001.932mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.333mm,61.818mm)(152.581mm,61.818mm) on Top Layer And Track (152.333mm,62.182mm)(152.732mm,62.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6007.635mil|Location2.X=6016.758mil|Location1.Y=2434.284mil|Location2.Y=2443.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6007.635mil|Location2.X=6016.758mil|Location1.Y=2434.284mil|Location2.Y=2443.408mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.333mm,61.818mm)(152.581mm,61.818mm) on Top Layer And Track (152.732mm,62.182mm)(153.699mm,61.215mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6002.567mil|Location2.X=6011.691mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6002.567mil|Location2.X=6011.691mil|Location1.Y=2436.383mil|Location2.Y=2445.507mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.333mm,62.182mm)(152.732mm,62.182mm) on Top Layer And Track (152.581mm,61.818mm)(153.335mm,61.064mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6007.635mil|Location2.X=6016.758mil|Location1.Y=2434.284mil|Location2.Y=2443.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6007.635mil|Location2.X=6016.758mil|Location1.Y=2434.284mil|Location2.Y=2443.408mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.581mm,61.818mm)(153.335mm,61.064mm) on Top Layer And Track (152.732mm,62.182mm)(153.699mm,61.215mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6039.401mil|Location2.X=6048.525mil|Location1.Y=2399.548mil|Location2.Y=2408.672mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6039.401mil|Location2.X=6048.525mil|Location1.Y=2399.548mil|Location2.Y=2408.672mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.581mm,61.818mm)(153.335mm,61.064mm) on Top Layer And Track (153.699mm,59.38mm)(153.699mm,61.215mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6037.302mil|Location2.X=6046.426mil|Location1.Y=2404.616mil|Location2.Y=2413.74mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6037.302mil|Location2.X=6046.426mil|Location1.Y=2404.616mil|Location2.Y=2413.74mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (152.732mm,62.182mm)(153.699mm,61.215mm) on Top Layer And Track (153.335mm,59.229mm)(153.335mm,61.064mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6039.401mil|Location2.X=6048.525mil|Location1.Y=2399.548mil|Location2.Y=2408.672mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6039.401mil|Location2.X=6048.525mil|Location1.Y=2399.548mil|Location2.Y=2408.672mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (153.335mm,59.229mm)(153.335mm,61.064mm) on Top Layer And Track (153.699mm,59.38mm)(153.699mm,61.215mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6039.401mil|Location2.X=6048.525mil|Location1.Y=2333.224mil|Location2.Y=2342.348mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6039.401mil|Location2.X=6048.525mil|Location1.Y=2333.224mil|Location2.Y=2342.348mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (153.335mm,59.229mm)(153.335mm,61.064mm) on Top Layer And Track (153.699mm,59.38mm)(154.496mm,58.582mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6041.501mil|Location2.X=6050.625mil|Location1.Y=2328.156mil|Location2.Y=2337.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6041.501mil|Location2.X=6050.625mil|Location1.Y=2328.156mil|Location2.Y=2337.28mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (153.335mm,59.229mm)(154.346mm,58.218mm) on Top Layer And Track (153.699mm,59.38mm)(153.699mm,61.215mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6041.501mil|Location2.X=6050.625mil|Location1.Y=2328.156mil|Location2.Y=2337.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6041.501mil|Location2.X=6050.625mil|Location1.Y=2328.156mil|Location2.Y=2337.28mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (153.335mm,59.229mm)(154.346mm,58.218mm) on Top Layer And Track (153.699mm,59.38mm)(154.496mm,58.582mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6072.907mil|Location2.X=6082.031mil|Location1.Y=2296.75mil|Location2.Y=2305.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6072.907mil|Location2.X=6082.031mil|Location1.Y=2296.75mil|Location2.Y=2305.874mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (153.335mm,59.229mm)(154.346mm,58.218mm) on Top Layer And Track (154.496mm,58.582mm)(154.704mm,58.582mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6077.975mil|Location2.X=6087.099mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6077.975mil|Location2.X=6087.099mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (153.699mm,59.38mm)(154.496mm,58.582mm) on Top Layer And Track (154.346mm,58.218mm)(154.704mm,58.218mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6082.052mil|Location2.X=6091.514mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6082.052mil|Location2.X=6091.514mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.169mm &lt; 0.2mm) Between Track (153.699mm,59.38mm)(154.496mm,58.582mm) on Top Layer And Track (154.704mm,58.218mm)(154.85mm,58.072mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6077.975mil|Location2.X=6087.099mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6077.975mil|Location2.X=6087.099mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (154.346mm,58.218mm)(154.704mm,58.218mm) on Top Layer And Track (154.496mm,58.582mm)(154.704mm,58.582mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6086.129mil|Location2.X=6095.253mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6086.129mil|Location2.X=6095.253mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (154.346mm,58.218mm)(154.704mm,58.218mm) on Top Layer And Track (154.704mm,58.582mm)(154.85mm,58.728mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6086.129mil|Location2.X=6095.253mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6086.129mil|Location2.X=6095.253mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (154.496mm,58.582mm)(154.704mm,58.582mm) on Top Layer And Track (154.704mm,58.218mm)(154.85mm,58.072mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6086.129mil|Location2.X=6095.253mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6086.129mil|Location2.X=6095.253mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (154.704mm,58.218mm)(154.85mm,58.072mm) on Top Layer And Track (154.704mm,58.582mm)(154.85mm,58.728mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6264.983mil|Location2.X=6274.107mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6264.983mil|Location2.X=6274.107mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (159.1mm,58.072mm)(159.246mm,58.218mm) on Top Layer And Track (159.1mm,58.728mm)(159.246mm,58.582mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6264.983mil|Location2.X=6274.107mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6264.983mil|Location2.X=6274.107mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (159.1mm,58.072mm)(159.246mm,58.218mm) on Top Layer And Track (159.246mm,58.582mm)(160.592mm,58.582mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6264.983mil|Location2.X=6274.107mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6264.983mil|Location2.X=6274.107mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (159.1mm,58.728mm)(159.246mm,58.582mm) on Top Layer And Track (159.246mm,58.218mm)(160.742mm,58.218mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6317.945mil|Location2.X=6327.069mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6317.945mil|Location2.X=6327.069mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (159.246mm,58.218mm)(160.742mm,58.218mm) on Top Layer And Track (159.246mm,58.582mm)(160.592mm,58.582mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6317.945mil|Location2.X=6327.069mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6317.945mil|Location2.X=6327.069mil|Location1.Y=2294.651mil|Location2.Y=2303.774mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (159.246mm,58.218mm)(160.742mm,58.218mm) on Top Layer And Track (160.592mm,58.582mm)(163.692mm,61.682mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6323.012mil|Location2.X=6332.136mil|Location1.Y=2296.75mil|Location2.Y=2305.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6323.012mil|Location2.X=6332.136mil|Location1.Y=2296.75mil|Location2.Y=2305.874mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (159.246mm,58.582mm)(160.592mm,58.582mm) on Top Layer And Track (160.742mm,58.218mm)(163.842mm,61.318mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6323.012mil|Location2.X=6332.136mil|Location1.Y=2296.75mil|Location2.Y=2305.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6323.012mil|Location2.X=6332.136mil|Location1.Y=2296.75mil|Location2.Y=2305.874mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (160.592mm,58.582mm)(163.692mm,61.682mm) on Top Layer And Track (160.742mm,58.218mm)(163.842mm,61.318mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6440.861mil|Location2.X=6449.985mil|Location1.Y=2414.599mil|Location2.Y=2423.723mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6440.861mil|Location2.X=6449.985mil|Location1.Y=2414.599mil|Location2.Y=2423.723mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (160.592mm,58.582mm)(163.692mm,61.682mm) on Top Layer And Track (163.842mm,61.318mm)(164.622mm,61.318mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6445.929mil|Location2.X=6455.053mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6445.929mil|Location2.X=6455.053mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (160.742mm,58.218mm)(163.842mm,61.318mm) on Top Layer And Track (163.692mm,61.682mm)(164.622mm,61.682mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6445.929mil|Location2.X=6455.053mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6445.929mil|Location2.X=6455.053mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (163.692mm,61.682mm)(164.622mm,61.682mm) on Top Layer And Track (163.842mm,61.318mm)(164.622mm,61.318mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.636mil|Location2.X=6485.76mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.636mil|Location2.X=6485.76mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (163.692mm,61.682mm)(164.622mm,61.682mm) on Top Layer And Track (164.622mm,61.318mm)(164.665mm,61.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.481mil|Location2.X=6486.605mil|Location1.Y=2415.852mil|Location2.Y=2424.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.481mil|Location2.X=6486.605mil|Location1.Y=2415.852mil|Location2.Y=2424.976mil|Absolute=True">Clearance Constraint: (0.159mm &lt; 0.2mm) Between Track (163.692mm,61.682mm)(164.622mm,61.682mm) on Top Layer And Track (164.665mm,61.275mm)(165.35mm,61.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.636mil|Location2.X=6485.76mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.636mil|Location2.X=6485.76mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (163.842mm,61.318mm)(164.622mm,61.318mm) on Top Layer And Track (164.622mm,61.682mm)(164.665mm,61.725mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.481mil|Location2.X=6486.605mil|Location1.Y=2417.543mil|Location2.Y=2426.667mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.481mil|Location2.X=6486.605mil|Location1.Y=2417.543mil|Location2.Y=2426.667mil|Absolute=True">Clearance Constraint: (0.159mm &lt; 0.2mm) Between Track (163.842mm,61.318mm)(164.622mm,61.318mm) on Top Layer And Track (164.665mm,61.725mm)(165.35mm,61.725mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.636mil|Location2.X=6485.76mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.636mil|Location2.X=6485.76mil|Location1.Y=2416.698mil|Location2.Y=2425.822mil|Absolute=True">Clearance Constraint: (0.114mm &lt; 0.2mm) Between Track (164.622mm,61.318mm)(164.665mm,61.275mm) on Top Layer And Track (164.622mm,61.682mm)(164.665mm,61.725mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.481mil|Location2.X=6486.605mil|Location1.Y=2417.543mil|Location2.Y=2426.667mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.481mil|Location2.X=6486.605mil|Location1.Y=2417.543mil|Location2.Y=2426.667mil|Absolute=True">Clearance Constraint: (0.159mm &lt; 0.2mm) Between Track (164.622mm,61.318mm)(164.665mm,61.275mm) on Top Layer And Track (164.665mm,61.725mm)(165.35mm,61.725mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.481mil|Location2.X=6486.605mil|Location1.Y=2415.852mil|Location2.Y=2424.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.481mil|Location2.X=6486.605mil|Location1.Y=2415.852mil|Location2.Y=2424.976mil|Absolute=True">Clearance Constraint: (0.159mm &lt; 0.2mm) Between Track (164.622mm,61.682mm)(164.665mm,61.725mm) on Top Layer And Track (164.665mm,61.275mm)(165.35mm,61.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEPDIZON41OYNHTBEVNIRTAY00HIMRCG213ON3ZCXPDUOXU2ABJPP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5368.504mil|Location2.X=5757.48mil|Location1.Y=2585.039mil|Location2.Y=2599.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5368.504mil|Location2.X=5757.48mil|Location1.Y=2585.039mil|Location2.Y=2599.016mil|Absolute=True">Un-Routed Net Constraint: Net RESET Between Track (138.1mm,67.4mm)(138.9mm,68.2mm) on Top Layer And Pad S1-1(143.7mm,63.475mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDQRGM2I4VJY5OCQQAI0T5J34VXBL2RUVXUBVX3QFEP1RHSJ31XAVC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5902.808mil|Location2.X=5914.058mil|Location1.Y=2610.517mil|Location2.Y=2621.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5902.808mil|Location2.X=5914.058mil|Location1.Y=2610.517mil|Location2.Y=2621.767mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Pad C4-1(150.7mm,66.85mm) on Top Layer And Pad R4-1(149.4mm,66.85mm) on Top Layer [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5902.808mil|Location2.X=5914.058mil|Location1.Y=2669.572mil|Location2.Y=2680.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5902.808mil|Location2.X=5914.058mil|Location1.Y=2669.572mil|Location2.Y=2680.822mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Pad C4-2(150.7mm,68.35mm) on Top Layer And Pad R4-2(149.4mm,68.35mm) on Top Layer [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6126.328mil|Location2.X=6137.578mil|Location1.Y=2526.855mil|Location2.Y=2538.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6126.328mil|Location2.X=6137.578mil|Location1.Y=2526.855mil|Location2.Y=2538.105mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad C5-1(155.25mm,63.7mm) on Top Layer And Pad C6-1(155.25mm,64.95mm) on Top Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6067.273mil|Location2.X=6078.523mil|Location1.Y=2526.855mil|Location2.Y=2538.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6067.273mil|Location2.X=6078.523mil|Location1.Y=2526.855mil|Location2.Y=2538.105mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad C5-2(153.75mm,63.7mm) on Top Layer And Pad C6-2(153.75mm,64.95mm) on Top Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6512.092mil|Location2.X=6523.342mil|Location1.Y=2733.517mil|Location2.Y=2744.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6512.092mil|Location2.X=6523.342mil|Location1.Y=2733.517mil|Location2.Y=2744.767mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Pad D1-1(166mm,70.2mm) on Top Layer And Pad R3-2(165.95mm,68.9mm) on Top Layer [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6453.036mil|Location2.X=6464.286mil|Location1.Y=2733.517mil|Location2.Y=2744.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6453.036mil|Location2.X=6464.286mil|Location1.Y=2733.517mil|Location2.Y=2744.767mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Pad D1-2(164.4mm,70.2mm) on Top Layer And Pad R3-1(164.45mm,68.9mm) on Top Layer [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6249.296mil|Location2.X=6260.546mil|Location1.Y=2274.887mil|Location2.Y=2286.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6249.296mil|Location2.X=6260.546mil|Location1.Y=2274.887mil|Location2.Y=2286.137mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.15mm &lt; 0.254mm) Between Pad IC1-1(158.225mm,57.45mm) on Top Layer And Pad IC1-2(158.225mm,58.4mm) on Top Layer [Top Solder] Mask Sliver [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6249.296mil|Location2.X=6260.546mil|Location1.Y=2312.288mil|Location2.Y=2323.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6249.296mil|Location2.X=6260.546mil|Location1.Y=2312.288mil|Location2.Y=2323.538mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.15mm &lt; 0.254mm) Between Pad IC1-2(158.225mm,58.4mm) on Top Layer And Pad IC1-3(158.225mm,59.35mm) on Top Layer [Top Solder] Mask Sliver [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6150.871mil|Location2.X=6162.121mil|Location1.Y=2312.288mil|Location2.Y=2323.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6150.871mil|Location2.X=6162.121mil|Location1.Y=2312.288mil|Location2.Y=2323.538mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.15mm &lt; 0.254mm) Between Pad IC1-4(155.725mm,59.35mm) on Top Layer And Pad IC1-5(155.725mm,58.4mm) on Top Layer [Top Solder] Mask Sliver [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6150.871mil|Location2.X=6162.121mil|Location1.Y=2274.887mil|Location2.Y=2286.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6150.871mil|Location2.X=6162.121mil|Location1.Y=2274.887mil|Location2.Y=2286.137mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.15mm &lt; 0.254mm) Between Pad IC1-5(155.725mm,58.4mm) on Top Layer And Pad IC1-6(155.725mm,57.45mm) on Top Layer [Top Solder] Mask Sliver [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-1(151.851mm,60.75mm) on Top Layer And Pad IC2-2(151.851mm,61.25mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5954.343mil|Location2.X=5965.593mil|Location1.Y=2378.907mil|Location2.Y=2390.157mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5954.343mil|Location2.X=5965.593mil|Location1.Y=2378.907mil|Location2.Y=2390.157mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.037mm &lt; 0.254mm) Between Pad IC2-1(151.851mm,60.75mm) on Top Layer And Pad IC2-24(151.25mm,60.149mm) on Top Layer [Top Solder] Mask Sliver [0.037mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2383.155mil|Location2.Y=2394.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2383.155mil|Location2.Y=2394.405mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-1(151.851mm,60.75mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5880.202mil|Location2.X=5891.452mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5880.202mil|Location2.X=5891.452mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-10(149.75mm,63.851mm) on Top Layer And Pad IC2-11(149.25mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5890.044mil|Location2.X=5901.294mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5890.044mil|Location2.X=5901.294mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-10(149.75mm,63.851mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5899.887mil|Location2.X=5911.137mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5899.887mil|Location2.X=5911.137mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-10(149.75mm,63.851mm) on Top Layer And Pad IC2-9(150.25mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5860.517mil|Location2.X=5871.767mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5860.517mil|Location2.X=5871.767mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-11(149.25mm,63.851mm) on Top Layer And Pad IC2-12(148.75mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5870.359mil|Location2.X=5881.609mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5870.359mil|Location2.X=5881.609mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-11(149.25mm,63.851mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5844.452mil|Location2.X=5855.702mil|Location1.Y=2490.754mil|Location2.Y=2502.004mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5844.452mil|Location2.X=5855.702mil|Location1.Y=2490.754mil|Location2.Y=2502.004mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.108mm &lt; 0.254mm) Between Pad IC2-12(148.75mm,63.851mm) on Top Layer And Pad IC2-13(148.149mm,63.25mm) on Top Layer [Top Solder] Mask Sliver [0.108mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850.674mil|Location2.X=5861.924mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850.674mil|Location2.X=5861.924mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-12(148.75mm,63.851mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2474.69mil|Location2.Y=2485.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2474.69mil|Location2.Y=2485.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-13(148.149mm,63.25mm) on Top Layer And Pad IC2-14(148.149mm,62.75mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2484.532mil|Location2.Y=2495.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2484.532mil|Location2.Y=2495.782mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-13(148.149mm,63.25mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2455.005mil|Location2.Y=2466.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2455.005mil|Location2.Y=2466.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-14(148.149mm,62.75mm) on Top Layer And Pad IC2-15(148.149mm,62.25mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2464.847mil|Location2.Y=2476.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2464.847mil|Location2.Y=2476.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-14(148.149mm,62.75mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2435.32mil|Location2.Y=2446.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2435.32mil|Location2.Y=2446.57mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-15(148.149mm,62.25mm) on Top Layer And Pad IC2-16(148.149mm,61.75mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2445.162mil|Location2.Y=2456.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2445.162mil|Location2.Y=2456.412mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-15(148.149mm,62.25mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2415.635mil|Location2.Y=2426.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2415.635mil|Location2.Y=2426.885mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-16(148.149mm,61.75mm) on Top Layer And Pad IC2-17(148.149mm,61.25mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2425.477mil|Location2.Y=2436.727mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2425.477mil|Location2.Y=2436.727mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-16(148.149mm,61.75mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5838.23mil|Location2.X=5849.48mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-17(148.149mm,61.25mm) on Top Layer And Pad IC2-18(148.149mm,60.75mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2405.792mil|Location2.Y=2417.042mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2405.792mil|Location2.Y=2417.042mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-17(148.149mm,61.25mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5844.452mil|Location2.X=5855.702mil|Location1.Y=2379.885mil|Location2.Y=2391.135mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5844.452mil|Location2.X=5855.702mil|Location1.Y=2379.885mil|Location2.Y=2391.135mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.108mm &lt; 0.254mm) Between Pad IC2-18(148.149mm,60.75mm) on Top Layer And Pad IC2-19(148.75mm,60.149mm) on Top Layer [Top Solder] Mask Sliver [0.108mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2386.107mil|Location2.Y=2397.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5846.315mil|Location2.X=5857.565mil|Location1.Y=2386.107mil|Location2.Y=2397.357mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-18(148.149mm,60.75mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5860.517mil|Location2.X=5871.767mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5860.517mil|Location2.X=5871.767mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-19(148.75mm,60.149mm) on Top Layer And Pad IC2-20(149.25mm,60.149mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850.674mil|Location2.X=5861.924mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850.674mil|Location2.X=5861.924mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-19(148.75mm,60.149mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2405.792mil|Location2.Y=2417.042mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2405.792mil|Location2.Y=2417.042mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-2(151.851mm,61.25mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2415.635mil|Location2.Y=2426.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2415.635mil|Location2.Y=2426.885mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-2(151.851mm,61.25mm) on Top Layer And Pad IC2-3(151.851mm,61.75mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5880.202mil|Location2.X=5891.452mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5880.202mil|Location2.X=5891.452mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-20(149.25mm,60.149mm) on Top Layer And Pad IC2-21(149.75mm,60.149mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5870.359mil|Location2.X=5881.609mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5870.359mil|Location2.X=5881.609mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-20(149.25mm,60.149mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5899.887mil|Location2.X=5911.137mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5899.887mil|Location2.X=5911.137mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-21(149.75mm,60.149mm) on Top Layer And Pad IC2-22(150.25mm,60.149mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5890.044mil|Location2.X=5901.294mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5890.044mil|Location2.X=5901.294mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-21(149.75mm,60.149mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5919.572mil|Location2.X=5930.822mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5919.572mil|Location2.X=5930.822mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-22(150.25mm,60.149mm) on Top Layer And Pad IC2-23(150.75mm,60.149mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5909.729mil|Location2.X=5920.979mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5909.729mil|Location2.X=5920.979mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-22(150.25mm,60.149mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5939.257mil|Location2.X=5950.507mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5939.257mil|Location2.X=5950.507mil|Location1.Y=2373.664mil|Location2.Y=2384.914mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-23(150.75mm,60.149mm) on Top Layer And Pad IC2-24(151.25mm,60.149mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5929.414mil|Location2.X=5940.664mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5929.414mil|Location2.X=5940.664mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-23(150.75mm,60.149mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5949.099mil|Location2.X=5960.349mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5949.099mil|Location2.X=5960.349mil|Location1.Y=2381.749mil|Location2.Y=2392.999mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-24(151.25mm,60.149mm) on Top Layer And Pad IC2-25(150mm,62mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2425.477mil|Location2.Y=2436.727mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2425.477mil|Location2.Y=2436.727mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-25(150mm,62mm) on Top Layer And Pad IC2-3(151.851mm,61.75mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2445.162mil|Location2.Y=2456.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2445.162mil|Location2.Y=2456.412mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-25(150mm,62mm) on Top Layer And Pad IC2-4(151.851mm,62.25mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2464.847mil|Location2.Y=2476.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2464.847mil|Location2.Y=2476.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-25(150mm,62mm) on Top Layer And Pad IC2-5(151.851mm,62.75mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2484.532mil|Location2.Y=2495.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5953.458mil|Location2.X=5964.708mil|Location1.Y=2484.532mil|Location2.Y=2495.782mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-25(150mm,62mm) on Top Layer And Pad IC2-6(151.851mm,63.25mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5949.099mil|Location2.X=5960.349mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5949.099mil|Location2.X=5960.349mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-25(150mm,62mm) on Top Layer And Pad IC2-7(151.25mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5929.414mil|Location2.X=5940.664mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5929.414mil|Location2.X=5940.664mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-25(150mm,62mm) on Top Layer And Pad IC2-8(150.75mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5909.729mil|Location2.X=5920.979mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5909.729mil|Location2.X=5920.979mil|Location1.Y=2488.891mil|Location2.Y=2500.141mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.071mm &lt; 0.254mm) Between Pad IC2-25(150mm,62mm) on Top Layer And Pad IC2-9(150.25mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2435.32mil|Location2.Y=2446.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2435.32mil|Location2.Y=2446.57mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-3(151.851mm,61.75mm) on Top Layer And Pad IC2-4(151.851mm,62.25mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2455.005mil|Location2.Y=2466.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2455.005mil|Location2.Y=2466.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-4(151.851mm,62.25mm) on Top Layer And Pad IC2-5(151.851mm,62.75mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2474.69mil|Location2.Y=2485.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5983.998mil|Location2.X=5995.248mil|Location1.Y=2474.69mil|Location2.Y=2485.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-5(151.851mm,62.75mm) on Top Layer And Pad IC2-6(151.851mm,63.25mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5955.321mil|Location2.X=5966.571mil|Location1.Y=2490.754mil|Location2.Y=2502.004mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5955.321mil|Location2.X=5966.571mil|Location1.Y=2490.754mil|Location2.Y=2502.004mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.108mm &lt; 0.254mm) Between Pad IC2-6(151.851mm,63.25mm) on Top Layer And Pad IC2-7(151.25mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.108mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5939.257mil|Location2.X=5950.507mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5939.257mil|Location2.X=5950.507mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-7(151.25mm,63.851mm) on Top Layer And Pad IC2-8(150.75mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5919.572mil|Location2.X=5930.822mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5919.572mil|Location2.X=5930.822mil|Location1.Y=2519.431mil|Location2.Y=2530.681mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.161mm &lt; 0.254mm) Between Pad IC2-8(150.75mm,63.851mm) on Top Layer And Pad IC2-9(150.25mm,63.851mm) on Top Layer [Top Solder] Mask Sliver [0.161mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6530.178mil|Location2.X=6541.428mil|Location1.Y=2307.252mil|Location2.Y=2320.868mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6530.178mil|Location2.X=6541.428mil|Location1.Y=2307.252mil|Location2.Y=2320.868mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.02mm &lt; 0.254mm) Between Pad J1-(166.45mm,58.61mm) on Multi-Layer And Pad J1-A4_B9(165.375mm,59.1mm) on Top Layer [Top Solder] Mask Sliver [0.02mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6530.178mil|Location2.X=6541.428mil|Location1.Y=2521.681mil|Location2.Y=2535.267mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6530.178mil|Location2.X=6541.428mil|Location1.Y=2521.681mil|Location2.Y=2535.267mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.02mm &lt; 0.254mm) Between Pad J1-(166.45mm,64.39mm) on Multi-Layer And Pad J1-A9_B4(165.375mm,63.9mm) on Top Layer [Top Solder] Mask Sliver [0.02mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2305.398mil|Location2.Y=2316.648mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2305.398mil|Location2.Y=2316.648mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A1_B12(165.375mm,58.3mm) on Top Layer And Pad J1-A4_B9(165.375mm,59.1mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2272.032mil|Location2.Y=2283.282mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2272.032mil|Location2.Y=2283.282mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.195mm &lt; 0.254mm) Between Pad J1-A1_B12(165.375mm,58.3mm) on Top Layer And Pad J1-SH3(165.95mm,57.18mm) on Multi-Layer [Top Solder] Mask Sliver [0.195mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2525.871mil|Location2.Y=2537.121mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2525.871mil|Location2.Y=2537.121mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A12_B1(165.375mm,64.7mm) on Top Layer And Pad J1-A9_B4(165.375mm,63.9mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2559.237mil|Location2.Y=2570.487mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2559.237mil|Location2.Y=2570.487mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.195mm &lt; 0.254mm) Between Pad J1-A12_B1(165.375mm,64.7mm) on Top Layer And Pad J1-SH4(165.95mm,65.82mm) on Multi-Layer [Top Solder] Mask Sliver [0.195mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6480.596mil|Location2.X=6491.846mil|Location1.Y=2336.895mil|Location2.Y=2348.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6480.596mil|Location2.X=6491.846mil|Location1.Y=2336.895mil|Location2.Y=2348.145mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A4_B9(165.375mm,59.1mm) on Top Layer And Pad J1-B8(165.375mm,59.75mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6480.596mil|Location2.X=6491.846mil|Location1.Y=2376.265mil|Location2.Y=2387.515mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6480.596mil|Location2.X=6491.846mil|Location1.Y=2376.265mil|Location2.Y=2387.515mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A5(165.375mm,60.25mm) on Top Layer And Pad J1-B7(165.375mm,60.75mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6480.596mil|Location2.X=6491.846mil|Location1.Y=2356.58mil|Location2.Y=2367.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6480.596mil|Location2.X=6491.846mil|Location1.Y=2356.58mil|Location2.Y=2367.83mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A5(165.375mm,60.25mm) on Top Layer And Pad J1-B8(165.375mm,59.75mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2415.635mil|Location2.Y=2426.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2415.635mil|Location2.Y=2426.885mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A6(165.375mm,61.25mm) on Top Layer And Pad J1-A7(165.375mm,61.75mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6480.596mil|Location2.X=6491.846mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6480.596mil|Location2.X=6491.846mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A6(165.375mm,61.25mm) on Top Layer And Pad J1-B7(165.375mm,60.75mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2435.32mil|Location2.Y=2446.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2435.32mil|Location2.Y=2446.57mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A7(165.375mm,61.75mm) on Top Layer And Pad J1-B6(165.375mm,62.25mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2474.69mil|Location2.Y=2485.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2474.69mil|Location2.Y=2485.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A8(165.375mm,62.75mm) on Top Layer And Pad J1-B5(165.375mm,63.25mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2455.005mil|Location2.Y=2466.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2455.005mil|Location2.Y=2466.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A8(165.375mm,62.75mm) on Top Layer And Pad J1-B6(165.375mm,62.25mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2494.375mil|Location2.Y=2505.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6529.808mil|Location2.X=6541.058mil|Location1.Y=2494.375mil|Location2.Y=2505.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.1mm &lt; 0.254mm) Between Pad J1-A9_B4(165.375mm,63.9mm) on Top Layer And Pad J1-B5(165.375mm,63.25mm) on Top Layer [Top Solder] Mask Sliver [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850.674mil|Location2.X=5861.924mil|Location1.Y=2642.013mil|Location2.Y=2653.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850.674mil|Location2.X=5861.924mil|Location1.Y=2642.013mil|Location2.Y=2653.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad R4-1(149.4mm,66.85mm) on Top Layer And Pad R7-2(148.1mm,66.85mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850.674mil|Location2.X=5861.924mil|Location1.Y=2701.068mil|Location2.Y=2712.318mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850.674mil|Location2.X=5861.924mil|Location1.Y=2701.068mil|Location2.Y=2712.318mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad R4-2(149.4mm,68.35mm) on Top Layer And Pad R7-1(148.1mm,68.35mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5799.493mil|Location2.X=5810.743mil|Location1.Y=2701.068mil|Location2.Y=2712.318mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5799.493mil|Location2.X=5810.743mil|Location1.Y=2701.068mil|Location2.Y=2712.318mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad R7-1(148.1mm,68.35mm) on Top Layer And Pad R9-1(146.8mm,68.35mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5799.493mil|Location2.X=5810.743mil|Location1.Y=2642.013mil|Location2.Y=2653.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5799.493mil|Location2.X=5810.743mil|Location1.Y=2642.013mil|Location2.Y=2653.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad R7-2(148.1mm,66.85mm) on Top Layer And Pad R9-2(146.8mm,66.85mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDBIFCWL0P4NKPEDMIB0LWL4AOJCW2DQYQN0WW3SGWOR1J0G4P505I"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.661mil|Location2.X=6002.911mil|Location1.Y=2386.107mil|Location2.Y=2397.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5991.661mil|Location2.X=6002.911mil|Location1.Y=2386.107mil|Location2.Y=2397.357mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Arc (152.656mm,60.75mm) on Top Overlay And Pad IC2-1(151.851mm,60.75mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6549.493mil|Location2.X=6560.743mil|Location1.Y=2742.407mil|Location2.Y=2753.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6549.493mil|Location2.X=6560.743mil|Location1.Y=2742.407mil|Location2.Y=2753.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Area Fill (166.6mm,69.8mm) (166.75mm,70.6mm) on Top Overlay And Pad D1-1(166mm,70.2mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6245.359mil|Location2.X=6256.609mil|Location1.Y=2239.454mil|Location2.Y=2250.704mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6245.359mil|Location2.X=6256.609mil|Location1.Y=2239.454mil|Location2.Y=2250.704mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.25mm &lt; 0.254mm) Between Pad IC1-1(158.225mm,57.45mm) on Top Layer And Track (157.65mm,56.8mm)(158.85mm,56.8mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.25mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDUXUGH5WE2KCTC3I1MCUSNPN3PKUKCBBVIDL3GBHTFQLPUK4MDPLM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6574.436mil|Location2.X=6585.686mil|Location1.Y=2730.595mil|Location2.Y=2741.845mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6574.436mil|Location2.X=6585.686mil|Location1.Y=2730.595mil|Location2.Y=2741.845mil|Absolute=True">Silk To Silk Clearance Constraint: (0.25mm &lt; 0.254mm) Between Text "D1" (167.134mm,69.7mm) on Top Overlay And Text "R3" (166.867mm,68.3mm) on Top Overlay Silk Text to Silk Clearance [0.25mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5629.544mil|Location2.X=5640.794mil|Location1.Y=2411.698mil|Location2.Y=2422.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5629.544mil|Location2.X=5640.794mil|Location1.Y=2411.698mil|Location2.Y=2422.948mil|Absolute=True">Silk To Silk Clearance Constraint: (0.25mm &lt; 0.254mm) Between Text "P2" (141.467mm,61.6mm) on Top Overlay And Text "S2" (142.967mm,60.2mm) on Top Overlay Silk Text to Silk Clearance [0.25mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDYWNQD0JAYPAQNFDZCOGEJUD3JI2OUZVNA5A1S3P2YF2YSY1EGCCO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5461.067mil|Location2.X=5482.342mil|Location1.Y=2677.602mil|Location2.Y=2707.985mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tim\Downloads\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5461.067mil|Location2.X=5482.342mil|Location1.Y=2677.602mil|Location2.Y=2707.985mil|Absolute=True">Net Antennae: Track (138.1mm,67.4mm)(138.9mm,68.2mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

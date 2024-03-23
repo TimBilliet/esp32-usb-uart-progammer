@@ -1,0 +1,38 @@
+Removed Pin From Net: NetName=+VBUS Pin=C1-1
+Removed Pin From Net: NetName=GND Pin=C1-2
+Removed Pin From Net: NetName=+3V3 Pin=C2-1
+Removed Pin From Net: NetName=GND Pin=C2-2
+Change Component Footprint: Designator=C3 Old Footprint=CAPC1608X90X35ML10T15 New Footprint=Wurth 0603 capacitor
+Change Component Footprint: Designator=C5 Old Footprint=CAPC1608X90X35ML10T15 New Footprint=Wurth 0603 capacitor
+Change Component Footprint: Designator=C1 Old Footprint=FP-GRM188-0_1-e0_2_0_55-IPC_A New Footprint=Wurth 0603 capacitor
+Change Component Footprint: Designator=C2 Old Footprint=FP-GRM188-0_1-e0_2_0_55-IPC_A New Footprint=Wurth 0603 capacitor
+Change Component Footprint: Designator=C4 Old Footprint=FP-GRM188-0_2-IPC_C New Footprint=Wurth 0603 capacitor
+Change Component Footprint: Designator=C6 Old Footprint=FP-GRM188-0_2-IPC_C New Footprint=Wurth 0603 capacitor
+Change Component Comment : Designator=C4 Old Comment=GRM188R6YA475KE15D New Comment=Generic Capacitor 4.7uF 0603
+Change Component Comment : Designator=C6 Old Comment=GRM188R6YA475KE15D New Comment=Generic Capacitor 4.7uF 0603
+Change Component Comment : Designator=C1 Old Comment=GRM188R60J106ME47D New Comment=Generic Capacitor 10uF 0603
+Change Component Comment : Designator=C2 Old Comment=GRM188R60J106ME47D New Comment=Generic Capacitor 10uF 0603
+Change Component Comment : Designator=C3 Old Comment=GRM188R71H104KA93D New Comment=Generic Capacitor 100nF 0603
+Change Component Comment : Designator=C5 Old Comment=GRM188R71H104KA93D New Comment=Generic Capacitor 100nF 0603
+Change Managed Component Library Link : Designator=C1 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=3F1FDB09-9931-43B7-B80F-88673FF926CD New ItemGUID= Old RevisionGUID=937773BC-2271-489F-837A-E58975DBF117 New RevisionGUID=
+Change Managed Component Library Link : Designator=C2 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=3F1FDB09-9931-43B7-B80F-88673FF926CD New ItemGUID= Old RevisionGUID=937773BC-2271-489F-837A-E58975DBF117 New RevisionGUID=
+Change Managed Component Library Link : Designator=C3 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=4C388509-E66D-4A8A-B6CC-D934003EFBA9 New ItemGUID= Old RevisionGUID=EAD26943-240A-4271-8D6E-DC96E83097AE New RevisionGUID=
+Change Managed Component Library Link : Designator=C4 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=0886355D-8EA8-4D0C-8661-9B555F8B25F5 New ItemGUID= Old RevisionGUID=F5A7A82B-8D37-48FD-8430-0135BBA14BE1 New RevisionGUID=
+Change Managed Component Library Link : Designator=C5 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=4C388509-E66D-4A8A-B6CC-D934003EFBA9 New ItemGUID= Old RevisionGUID=EAD26943-240A-4271-8D6E-DC96E83097AE New RevisionGUID=
+Change Managed Component Library Link : Designator=C6 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=0886355D-8EA8-4D0C-8661-9B555F8B25F5 New ItemGUID= Old RevisionGUID=F5A7A82B-8D37-48FD-8430-0135BBA14BE1 New RevisionGUID=
+Change component parameters: Designator = "C1" ("C1"); Footprint = "FP-GRM188-0_1-e0_2_0_55-IPC_A"; UniqueID = "\RTJTSWSL" ("\RTJTSWSL")
+Change component parameters (AddParameter): Name = "Value"; Value = "10uF"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C2" ("C2"); Footprint = "FP-GRM188-0_1-e0_2_0_55-IPC_A"; UniqueID = "\ALBCBMIU" ("\ALBCBMIU")
+Change component parameters (AddParameter): Name = "Value"; Value = "10uF"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C3" ("C3"); Footprint = "CAPC1608X90X35ML10T15"; UniqueID = "\QPTIRBEC" ("\QPTIRBEC")
+Change component parameters (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C4" ("C4"); Footprint = "FP-GRM188-0_2-IPC_C"; UniqueID = "\JECTFBNJ" ("\JECTFBNJ")
+Change component parameters (AddParameter): Name = "Value"; Value = "4.7uF"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C5" ("C5"); Footprint = "CAPC1608X90X35ML10T15"; UniqueID = "\XCQVTEMP" ("\XCQVTEMP")
+Change component parameters (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C6" ("C6"); Footprint = "FP-GRM188-0_2-IPC_C"; UniqueID = "\GQRUCYJL" ("\GQRUCYJL")
+Change component parameters (AddParameter): Name = "Value"; Value = "4.7uF"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=+VBUS Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C2-1
+Added Pin To Net: NetName=+3V3 Pin=C2-2
