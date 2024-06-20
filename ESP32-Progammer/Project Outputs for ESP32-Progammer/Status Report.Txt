@@ -1,0 +1,22 @@
+Output: Gerber X2 Files
+Type  : GerberX2
+From  : Variant [[No Variations]] of Project [ESP32-Progammer.PrjPcb]
+   Generated File[MAIN_PCB_Copper_Signal_Top.gbr]
+   Generated File[MAIN_PCB_Copper_Signal_Bot.gbr]
+   Generated File[MAIN_PCB_Legend_Top.gbr]
+   Generated File[MAIN_PCB_Legend_Bot.gbr]
+   Generated File[MAIN_PCB_Soldermask_Top.gbr]
+   Generated File[MAIN_PCB_Soldermask_Bot.gbr]
+   Generated File[MAIN_PCB_Paste_Top.gbr]
+   Generated File[MAIN_PCB_Paste_Bot.gbr]
+   Generated File[MAIN_PCB_Profile.gbr]
+   Generated File[MAIN_PCB_NPTH_Drill.gbr]
+   Generated File[MAIN_PCB_PTH_Drill.gbr]
+   Generated File[MAIN_PCB.EXTREP]
+   Generated File[MAIN_PCB.REP]
+
+
+Files Generated   : 13
+Documents Printed : 0
+
+Finished Output Generation At 21:22:39 On 20/06/2024
