@@ -1,7 +1,7 @@
 # Esp32 USB to UART bridge PCB
-A compact USB to uart bridge pcb I designed in Altium Designer. Used for programming ESP32 boards.\
+A compact USB to uart bridge pcb made in Altium. Used for programming ESP32 boards or other microcontrollers via UART.\
 Features reset and boot buttons, along with an auto-reset circuit.\
-I picked these components because I already had them lying around.\
-2 layer PCB for lower cost.
+I picked these components because I already had them lying around.
 
-![espprog](https://github.com/TimBilliet/esp32-usb-uart-progammer/assets/47719114/334668e6-4683-4e5e-ac8d-1200d9ca0a8d)
+![image](https://github.com/user-attachments/assets/17f71f85-ff24-4df5-8eca-faa32c0ee975)
+
