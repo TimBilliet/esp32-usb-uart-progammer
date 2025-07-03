@@ -1,0 +1,30 @@
+Net Status Report
+Filename     : C:\Users\Tim\Documents\Github repositories\esp32-usb-uart-progammer\ESP32-Progammer\MAIN_PCB.PcbDoc
+Date         : 3/07/2025
+Time         : 20:06:30
+Time Elapsed : 00:00:00
+
+Nets, Layer, Length
+    +3V3, Signal Layers Only, 0mm
+    +3V3_CP2102, Signal Layers Only, 0mm
+    +VBUS, Signal Layers Only, 0mm
+    BOOT, Signal Layers Only, 11.6524mm
+    DTR, Signal Layers Only, 5.5533mm
+    D_I_N, Signal Layers Only, 14.5439mm
+    D_I_P, Signal Layers Only, 14.2801mm
+    D_O_N, Signal Layers Only, 5.7549mm
+    D_O_P, Signal Layers Only, 5.7549mm
+    GND, Signal Layers Only, 0mm
+    NetD1_1, Signal Layers Only, 1.4207mm
+    NetIC2_15, Signal Layers Only, 1.5559mm
+    NetIC2_8, Signal Layers Only, 4.8579mm
+    NetIC2_9, Signal Layers Only, 5.3394mm
+    NetJ1_A5, Signal Layers Only, 6.2806mm
+    NetJ1_B5, Signal Layers Only, 8.2312mm
+    NetQ1_1, Signal Layers Only, 5.1326mm
+    NetQ2_1, Signal Layers Only, 4.1953mm
+    RESET, Signal Layers Only, 18.3919mm
+    RTS, Signal Layers Only, 3.7636mm
+    RXD, Signal Layers Only, 12.4624mm
+    TXD, Signal Layers Only, 15.5449mm
+count : 22
